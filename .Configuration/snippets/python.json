@@ -1,19 +1,53 @@
 {
-  "Template": {
-    "prefix": "template_python",
+  "FileTemplate": {
+    "prefix": "template_file_python",
     "body": [
       "'''",
-      "  @File:      ${TM_FILENAME}",
+      "@File:      ${TM_FILENAME}",
       "",
-      "  @Brief:     ${1}",
+      "@Brief:     ${1}",
       "",
       "'''",
       "",
       "# Regular module imports",
+      "from pathlib import Path",
+      "import sys",
+      "",
+      "# Find the root of PythonTools with respect to the file",
+      "pythonToolsRoot = Path(__file__).absolute().parents[1]",
+      "",
+      "# Check that PythonTools is on the python path and if not append it to",
+      "if pythonToolsRoot.as_posix() not in sys.path:",
+      "  sys.path.append(pythonToolsRoot.as_posix())",
       "",
       "# Custom file imports",
       "",
+      "",
+      "if __name__ == '__main__':",
+      "  pass",
+      ""
     ],
     "description": "Brief Template for Python"
+  },
+  "FunctionTemplate": {
+    "prefix": "template_function_python",
+    "body": [
+      "def ${1}(${2})->bool:",
+      "  '''",
+      "  @Brief          ${3}",
+      "  ",
+      "  @Args",
+      "    ${4}",
+      "",
+      "  @Return         bool",
+      "                  True boolean operater is returned, indicating a successful",
+      "                  return.",
+      "  '''",
+      "  ",
+      "  ${5}",
+      "  ",
+      "  return True"
+    ],
+    "description": "Brief Template for function defintiion in Python"
   }
 }

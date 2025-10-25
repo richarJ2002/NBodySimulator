@@ -1,9 +1,11 @@
 # SET UP #
 
 ## Clang ##
+
 Clang auto formatter is used to manage code quality. Install Clang-Format by
 Xaver Hellauer. Then go to your user settings json file and add the following
 settings:
+
 ```
 "clang-format.executable": "C:/Users/jason/Desktop/Projects/NBodySimulator/.Configuration/Clang/clang-format.exe",
 "cmake.configureOnOpen": true
@@ -32,7 +34,6 @@ This is the name of the variable. Generally it should contain at least 2
 descriptive words, although there may be exceptions to having 1. The purpose is
 to make it easy to identify what the variable represents.
 
-
 ### frame ###
 
 This is to indicate the frame which the vector is orientated against. It does
@@ -59,7 +60,7 @@ For example kg m per seconds squared (Newton) is kgms2
 
 This is to indicate if the variable is an input to a function or an output to a
 function. If the variable is defined within a function then this part should be
-ommitted. 
+ommitted.
 
 # TEST CASES #
 
@@ -81,7 +82,7 @@ test case.
 
 ## running a test case ##
 
-Running a test case is done using the `RunTest.sh` bash script. Essentially, you type: 
+Running a test case is done using the `RunTest.sh` bash script. Essentially, you type:
 
 ```./RunTest.sh <additional_flags> <positional_arguments_to_test_case>```
 
@@ -106,7 +107,7 @@ up, read `Parameters/README.md`.
 
 # FRAMES #
 
-Unless in very specific situations, all frames can be assumed to follow a right handed orthogonal axis system. For more infomration about rotations, read the ** ROTATION SEQUENCES** section.
+Unless in very specific situations, all frames can be assumed to follow a right handed orthogonal axis system. For more infomration about rotations, read the **ROTATION SEQUENCES** section.
 
 |       Frame Name      | Abbreviation |                 Description                  |     Origin    |  Definition of x-axis  |   Definition of y-axis   |     Definition of z-axis     |                                     Note                                                           |
 |:---------------------:|:------------:|:--------------------------------------------:|:-------------:|:----------------------:|:------------------------:|:----------------------------:|:--------------------------------------------------------------------------------------------------:|
@@ -119,7 +120,7 @@ Unless in very specific situations, all frames can be assumed to follow a right 
 |   Inertial-Centric    |   InertCen   | Frame centered around a body.                |   Body COG    |    Dependent on Body   |    Dependent on Body     |       Dependent on Body      | Axis definitions should be documented in Geo-Centric Body Definitions section                      |
 |    North-East-Down    |     ned      | Frame which orientates to geographic areas.  |   <varries>   | North of orbiting body | Cross Product of x and z |   To COG of orbiting body    | Shoule be noted that x and y are tangental to orbital body, and z is radial                        |
 |     Sensor Frame      |     Sen      | Frame which the sensor is orientated.        | Sensor Origin |     Sensor x-axis      |       Sensor y-axis      |        Sensor z-axis         | This frame is dependent on the sensor it is representing. Also used for describing hardware frames |
- 
+
 ## Geo-Centric Body Definitions ##
 
 Geo-Centric frame is a general term for a Celestial Body Frame. This is used
@@ -135,7 +136,7 @@ COG and it rotates with the body, meaning it is fixed relative to the surface.
 InertCen is bassically an inertial frame for a body. Its origin is at the bodies
 COG but it does not rotate with the body.
 
-# VECTOS #
+# VECTORS #
 
 # Cartesian Vectors #
 
@@ -183,9 +184,11 @@ the angles will **ALWAYS** be in radians. Hence the unit tag is their to
 describe the units of the radius element.
 
 # ROTATIONS #
+
 ## QUATERNIONS ##
 
-The standard for quaternions in this project is:
+The standard for quaternions in this project is to have the scalar quaternion at
+the end of the quaternion vector, as such:
 
 quaternion = [
 
@@ -216,9 +219,13 @@ quaternion_gibs_vector = [
 
 quaternion_scaler = S_QUATERNION_COMPONENT
 
+The quaternion frame tag shall always refer to being a rotation from one frame
+to another (E.g. from the initial frame to the body frame).
+
 ## EULER ANGLES ##
 
-The standard for Euler Angle vectors is 123 (XYZ).
+The standard for Euler Angle vectors is 123 (XYZ). The reason for this is the
+position within the vector resembles the number convention for rotation.
 
 eulerAngle = [
 
@@ -232,7 +239,9 @@ eulerAngle = [
 
 ## ROTATION SEQUENCES ##
 
-Whenever euler angles are involved, the rotation sequence is 321 (ZYX).
+Whenever euler angles are involved, the rotation sequence is 321 (ZXY). This
+means that, starting from the left, a rotation is performed about the Z, then Y
+then finally X axis.
 
 Positive rotation is defined with respect to the right hand rule.
 

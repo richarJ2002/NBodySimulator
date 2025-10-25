@@ -22,7 +22,8 @@
   "[python]": {
     "editor.quickSuggestions": {
       "strings": true
-    }
+    },
+    "editor.defaultFormatter": "ms-python.autopep8"
   },
   "[cmake]": {
     "editor.quickSuggestions": {
@@ -61,5 +62,18 @@
   "editor.formatOnSave": true,
   "clang-format.executable": "C:/Users/richar_j/Desktop/Projects/NBodySimulator/.Configuration/Clang/clang-format.exe",
   "cmake.configureOnOpen": true,
-  "editor.detectIndentation": false
+  "workbench.colorTheme": "GitHub Dark Default",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "cmake.showConfigureWithDebuggerNotification": false,
+  "python.createEnvironment.trigger": "off",
+  "autopep8.args": [
+    "--ignore=E402,E121",
+    "--indent-size=2",
+    "--max-line-length=80"
+  ],
+  "editor.largeFileOptimizations": false,
+  "editor.scrollBeyondLastLine": false,
+  "python.analysis.extraPaths": [
+    "C:/Users/richar_j/Desktop/Projects/PythonTools"
+  ]
 }
